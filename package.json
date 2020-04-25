@@ -1,0 +1,9 @@
+{
+  "name": "need",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:olga-urentseva/need.git",
+  "author": "Olga Urentseva <lelyalelya9666@gmail.com>",
+  "license": "UNLICENSED",
+  "private": true
+}
