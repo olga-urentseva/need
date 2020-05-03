@@ -1,0 +1,42 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title I Need: people can help each other
+    meta(name='viewport' content='width=device-width,initial-scale=1')
+    link(rel='stylesheet' href='style.css')
+  body
+    header.header
+      .header-collapsed
+        .conatiner
+          .header__wrapper.header-wrapper
+            .header-wrapper__logo-place
+              a.header-wrapper__logo-link
+                img.header__logo-icon.logo-icon(src="/lifesaver.svg", alt="Logo lifesaver")
+                .header--logo-text.logo-text I Need
+            nav.header__wrapper-menu.menu
+              ul
+                li
+                  a.header-wrapper-menu__link.header-wrapper-menu-link.menu-link(href='/about.html') About
+                li
+                  a.header-wrapper-menu__link.header-wrapper-menu-link.menu-link(href='/rules.html') Rules
+                li
+                  a.header-wrapper-menu__link.header-wrapper-menu-link.menu-link(href='/login.html') Log in
+                li
+                  a.header-wrapper-menu__link.header-wrapper-menu-link.header-wrapper-menu-link--signup(href='/signup.html') Sign up
+    main.content
+      block content
+    footer.footer
+      .footer-wrapper.footer__wrapper
+        .footer-wrapper__logo-column.footer-wrapper__column
+          a.footer-wrapper__logo-link
+            img.footer__logo-icon.logo-icon(src="/lifesaver.svg", alt="Logo lifesaver")
+            .header--logo-text.logo-text I Need
+        .footer-wrapper__menu-column.footer-wrapper__column
+          nav.footer-wrapper__menu.menu
+            li
+              a.footer-wrapper-menu__link.footer-wrapper-menu-link.menu-link(href='/about.html') About
+            li
+              a.footer-wrapper-menu__link.footer-wrapper-menu-link.menu-link(href='/rules.html') Rules
+        .footer-wrapper__contacts-column.footer-wrapper__column
+
