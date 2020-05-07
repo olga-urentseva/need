@@ -1,0 +1,98 @@
+@use '../variables';
+
+.header {
+  background-color: variables.$color-primary;
+}
+
+.header__wrapper {
+  margin: 1rem;
+}
+
+.header-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-wrapper-static {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.header__logo-place {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.header__logo-icon {
+  width: 2.5rem;
+}
+
+.logo-text {
+  color: variables.$color-secondary;
+  font-family: 'Jost';
+  font-size: 2em;
+  font-weight: 600;
+  margin: none;
+}
+
+.header__logo-text {
+  margin-left: 1rem;
+}
+
+.header__menu-button {
+  border: none;
+  text-decoration: none;
+  display: block;
+  background-color: transparent;
+}
+
+.header-button {
+  width: 2rem;
+  display: block;
+}
+
+.header__menu {
+  display: none;
+  margin-top: 1em;
+}
+
+.menu-link {
+  text-decoration: none;
+  color: variables.$color-secondary;
+  font-family: 'Jost';
+  font-size: 1.5em;
+  font-weight: 500;
+}
+
+.menu-link:hover {
+  text-decoration: underline;
+}
+
+.menu-link:focus {
+  text-decoration: underline;
+}
+
+.header__icon-close {
+  display: none;
+}
+
+.menu--collapsed .header__menu {
+  display: block;
+}
+
+.menu--collapsed .header__icon-close {
+  display: block;
+}
+
+.menu--collapsed .header__icon-hamburger {
+  display: none;
+}
+
+.hero-img {
+  width: 100%;
+  max-width: 40em;
+}

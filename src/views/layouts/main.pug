@@ -4,39 +4,46 @@ html(lang='en')
     meta(charset='UTF-8')
     title I Need: people can help each other
     meta(name='viewport' content='width=device-width,initial-scale=1')
-    link(rel='stylesheet' href='style.css')
+    link(rel='stylesheet' href='/styles/main.css')
   body
     header.header
-      .header-collapsed
-        .conatiner
-          .header__wrapper.header-wrapper
-            .header-wrapper__logo-place
-              a.header-wrapper__logo-link
-                img.header__logo-icon.logo-icon(src="/lifesaver.svg", alt="Logo lifesaver")
-                .header--logo-text.logo-text I Need
-            nav.header__wrapper-menu.menu
+      .conatiner
+        .header__wrapper.header-wrapper
+          .header-wrapper-static
+            .header-wrapper__logo
+              a.header-wrapper__logo-link(href='/')
+                .header__logo-place
+                  img.header__logo-icon.logo-icon(src="/logo.svg", alt="Logo lifesaver")
+                  .header__logo-text.logo-text I Need
+            .header-wrapper__button
+              button.header__menu-button
+                img.header__icon-hamburger.header-button(src="/hamburger.svg" alt="menu button")
+                img.header__icon-close.header-button(src="/close.svg" alt="close button")
+          .header__menu.menu
+            nav.header__wrapper-menu
               ul
                 li
-                  a.header-wrapper-menu__link.header-wrapper-menu-link.menu-link(href='/about.html') About
+                  a.header-wrapper-menu__link.header-wrapper-menu-link.header-wrapper-menu-link--signup.menu-link(href='/signup') Sign up
                 li
-                  a.header-wrapper-menu__link.header-wrapper-menu-link.menu-link(href='/rules.html') Rules
+                  a.header-wrapper-menu__link.header-wrapper-menu-link.menu-link(href='/login') Log in
                 li
-                  a.header-wrapper-menu__link.header-wrapper-menu-link.menu-link(href='/login.html') Log in
+                  a.header-wrapper-menu__link.header-wrapper-menu-link.menu-link(href='/about') About
                 li
-                  a.header-wrapper-menu__link.header-wrapper-menu-link.header-wrapper-menu-link--signup(href='/signup.html') Sign up
+                  a.header-wrapper-menu__link.header-wrapper-menu-link.menu-link(href='/rules') Rules
     main.content
       block content
     footer.footer
       .footer-wrapper.footer__wrapper
         .footer-wrapper__logo-column.footer-wrapper__column
-          a.footer-wrapper__logo-link
-            img.footer__logo-icon.logo-icon(src="/lifesaver.svg", alt="Logo lifesaver")
+          a.footer-wrapper__logo-link(href='/')
+            img.footer__logo-icon.logo-icon(src="/logo.svg", alt="Logo lifesaver")
             .header--logo-text.logo-text I Need
         .footer-wrapper__menu-column.footer-wrapper__column
           nav.footer-wrapper__menu.menu
             li
-              a.footer-wrapper-menu__link.footer-wrapper-menu-link.menu-link(href='/about.html') About
+              a.footer-wrapper-menu__link.footer-wrapper-menu-link.menu-link(href='/about') About
             li
-              a.footer-wrapper-menu__link.footer-wrapper-menu-link.menu-link(href='/rules.html') Rules
+              a.footer-wrapper-menu__link.footer-wrapper-menu-link.menu-link(href='/rules') Rules
         .footer-wrapper__contacts-column.footer-wrapper__column
 
+    script(src='/assets/all.js')
