@@ -1,0 +1,27 @@
+@use '../variables';
+
+.button {
+  border: none;
+  width: auto;
+  white-space: nowrap;
+  border-radius: 1em;
+  background-color: variables.$color-accent;
+  font-size: 1.5em;
+  padding: 0.2em 0.5em;
+  color: variables.$color-secondary-light;
+  font-family: 'Jost';
+  font-weight: 600;
+  // text-shadow: 0px 1px 0px #080c08;
+  cursor: pointer;
+  box-shadow: 0px 10px 14px -7px #141207;
+}
+
+.button:hover {
+  background: linear-gradient(to bottom, #f0bd18 5%, #eec43a 100%);
+  background-color: #ecbf29;
+}
+
+.button:active {
+  position: relative;
+  top: 0.1rem;
+}
