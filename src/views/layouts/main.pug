@@ -23,13 +23,17 @@ html(lang='en')
             nav.header__wrapper-menu
               ul
                 li
-                  a.header-wrapper-menu__link.header-wrapper-menu-link.header-wrapper-menu-link--signup.menu-link(href='/signup') Sign up
-                li
-                  a.header-wrapper-menu__link.header-wrapper-menu-link.menu-link(href='/login') Log in
-                li
-                  a.header-wrapper-menu__link.header-wrapper-menu-link.menu-link(href='/about') About
+                  a.header-wrapper-menu__link.header-wrapper-menu-link.header-wrapper-menu-link--signup.menu-link(href='/about') About
                 li
                   a.header-wrapper-menu__link.header-wrapper-menu-link.menu-link(href='/rules') Rules
+                li.header-wrapper-menu__delimeter-item
+                li
+                  a.header-wrapper-menu__link.header-wrapper-menu-link.menu-link(href='/signin') Sign in
+                li
+                  a.header-wrapper-menu__link.header-wrapper-menu-link.menu-link(href='/signup') Sign up
+                li
+                  a.header-wrapper-menu__link.header-wrapper-menu-link(href='#')
+                    img.logout-icon(src='/logout.svg')
     main.content
       block content
     footer.footer

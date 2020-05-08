@@ -68,12 +68,22 @@
   font-weight: 500;
 }
 
+.logout-icon {
+  width: 2rem;
+  display: none;
+}
+
 .menu-link:hover {
   text-decoration: underline;
 }
 
 .menu-link:focus {
   text-decoration: underline;
+}
+
+.header-wrapper-menu__delimeter-item {
+  border-top: 1px solid variables.$color-secondary;
+  margin-top: 1em;
 }
 
 .header__icon-close {
@@ -95,4 +105,38 @@
 .hero-img {
   width: 100%;
   max-width: 40em;
+}
+
+@media (min-width: variables.$break-point) {
+  .header-wrapper {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header__menu {
+    display: block;
+    margin: 0;
+  }
+
+  .header__menu-button {
+    display: none;
+  }
+
+  .header__menu ul {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .header__menu ul li {
+    margin: 0 1em;
+  }
+
+  .logout-icon {
+    display: block;
+  }
+
+  .header-wrapper-menu__delimeter-item {
+    display: none;
+  }
 }
