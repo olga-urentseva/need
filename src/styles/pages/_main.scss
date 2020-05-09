@@ -1,5 +1,25 @@
 @use '../variables';
 
+.hero-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: -1em;
+}
+
+.hero-wrapper-info {
+  flex: 1 1 25em;
+  margin: 1em 1em -1em 1em;
+}
+
+.hero-wrapper__media {
+  width: 100%;
+  max-width: 35em;
+  flex: 1 1 auto;
+  margin: 1em;
+}
+
 .hero-wrapper-info__main-text {
   font-size: 2em;
   margin: 1rem 0;
@@ -13,6 +33,18 @@
   margin: 1em 1em;
 }
 
-.hero-wrapper__media.hero-wrapper-media {
+.hero-wrapper__media {
   margin-top: 2em;
+}
+
+.hero-wrapper-info__buttons {
+  margin: 1em -1em;
+}
+
+.hero-wrapper-info__button-link {
+  margin: 1em;
+}
+
+.hero-wrapper__button {
+  margin: 0.5em 0;
 }

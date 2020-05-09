@@ -2,19 +2,19 @@ doctype html
 html(lang='en')
   head
     meta(charset='UTF-8')
-    title I Need: people can help each other
+    title The Need: people can help each other
     meta(name='viewport' content='width=device-width,initial-scale=1')
     link(rel='stylesheet' href='/styles/main.css')
   body
     header.header
-      .conatiner
+      .container
         .header__wrapper.header-wrapper
           .header-wrapper-static
             .header-wrapper__logo
               a.header-wrapper__logo-link(href='/')
                 .header__logo-place
                   img.header__logo-icon.logo-icon(src="/logo.svg", alt="Logo lifesaver")
-                  .header__logo-text.logo-text I Need
+                  .header__logo-text.logo-text The Need
             .header-wrapper__button
               button.header__menu-button
                 img.header__icon-hamburger.header-button(src="/hamburger.svg" alt="menu button")
@@ -37,17 +37,25 @@ html(lang='en')
     main.content
       block content
     footer.footer
-      .footer-wrapper.footer__wrapper
-        .footer-wrapper__logo-column.footer-wrapper__column
-          a.footer-wrapper__logo-link(href='/')
-            img.footer__logo-icon.logo-icon(src="/logo.svg", alt="Logo lifesaver")
-            .header--logo-text.logo-text I Need
-        .footer-wrapper__menu-column.footer-wrapper__column
-          nav.footer-wrapper__menu.menu
-            li
-              a.footer-wrapper-menu__link.footer-wrapper-menu-link.menu-link(href='/about') About
-            li
-              a.footer-wrapper-menu__link.footer-wrapper-menu-link.menu-link(href='/rules') Rules
-        .footer-wrapper__contacts-column.footer-wrapper__column
+      .container
+        .footer-wrapper.footer__wrapper
+          .footer-wrapper__logo-column.footer-wrapper__logo-column.footer-wrapper__column
+            a.footer-wrapper__logo-link(href='/')
+              img.footer__logo-icon.logo-icon(src="/logo.svg", alt="Logo lifesaver")
+              .header--logo-text.logo-text The Need
+          .footer-wrapper__menu-column.footer-wrapper__column
+            nav.footer-wrapper__menu.menu
+              ul
+                li
+                  a.footer-wrapper-menu__link.footer-wrapper-menu-link.menu-link(href='/about') About
+                li
+                  a.footer-wrapper-menu__link.footer-wrapper-menu-link.menu-link(href='/rules') Rules
+          .footer-wrapper__contacts-column.footer-wrapper__column
+            p.footer-wrapper__contact.footer-title Contacts:
+            p.footer-wrapper__contact +4800000000
+            p.footer-wrapper__contact +4800000000
+            p.footer-wrapper__contact Poland. Warsaw. ul. Lalala 56
+          .delimeter-after-footer
+        p.copyright Urentseva Olga © 2020
 
     script(src='/assets/all.js')

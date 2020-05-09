@@ -1,0 +1,82 @@
+@use '../variables';
+
+.footer {
+  background-color: variables.$color-primary;
+}
+
+.footer-wrapper {
+  margin-top: 1em;
+}
+
+.footer-wrapper__menu-column {
+  margin-top: 1em;
+}
+
+.footer-wrapper__logo-column a {
+  display: flex;
+  flex-direction: row;
+}
+
+.footer__logo-icon {
+  width: 1.5em;
+  margin-right: 0.5em;
+}
+
+.header--logo-text {
+  font-size: 1.5em;
+}
+
+.footer-wrapper__menu ul li {
+  list-style: none;
+}
+
+.footer-wrapper__column {
+  color: variables.$color-secondary-light;
+}
+
+.footer-wrapper__contact {
+  font-family: 'Jost';
+  font-weight: 600;
+  color: variables.$color-secondary;
+  margin: 0 0 0.5em 0;
+}
+.footer-title {
+  font-size: 1em;
+  color: variables.$color-secondary-darker;
+}
+
+.footer-wrapper__contacts-column {
+  margin-top: 1em;
+}
+
+.footer-wrapper-menu-link {
+  font-size: 1.5em;
+}
+
+.delimeter-after-footer {
+  border-bottom: 1px solid variables.$color-secondary;
+}
+
+.copyright {
+  color: variables.$color-secondary-darker;
+}
+
+@media (min-width: variables.$break-point) {
+  .footer-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .footer-wrapper__column {
+    margin: 1em;
+  }
+
+  .footer__wrapper {
+    margin: 0 -1em;
+  }
+
+  .delimeter-after-footer {
+    display: none;
+  }
+}
