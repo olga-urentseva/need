@@ -32,6 +32,10 @@ fastify.get('/signin', (request, reply) => {
   reply.view('pages/signin', { text: 'text' });
 });
 
+fastify.get('/signup', (request, reply) => {
+  reply.view('pages/signup', { text: 'text' });
+});
+
 fastify.setNotFoundHandler((request, reply) => {
   reply.status(404).view('pages/not-found');
 });

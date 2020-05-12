@@ -21,6 +21,12 @@
   align-items: center;
 }
 
+.header-wrapper__logo-link,
+.header-wrapper__logo-link:hover,
+.header-wrapper__logo-link:focus {
+  text-decoration: none;
+}
+
 .header__logo-place {
   display: flex;
   flex-direction: row;
@@ -33,6 +39,7 @@
 
 .logo-text {
   color: variables.$color-secondary;
+  text-decoration: none;
   font-family: 'Jost';
   font-size: 2em;
   font-weight: 600;
