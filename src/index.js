@@ -20,6 +20,14 @@ fastify.get('/', (request, reply) => {
   reply.view('pages/index', { text: 'text' });
 });
 
+fastify.get('/about', (request, reply) => {
+  reply.view('pages/about', { text: 'text' });
+});
+
+fastify.get('/rules', (request, reply) => {
+  reply.view('pages/rules', { text: 'text' });
+});
+
 fastify.setNotFoundHandler((request, reply) => {
   reply.status(404).view('pages/not-found');
 });

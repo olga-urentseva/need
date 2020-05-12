@@ -1,0 +1,27 @@
+@use '../variables';
+
+.rules__wrapper {
+  margin: -1em;
+}
+
+.rules-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.rules-wrapper__card {
+  margin: 1em;
+  line-height: 1.3em;
+}
+
+.rules-wrapper-main-text {
+  color: variables.$color-text-accent;
+  font-size: 2em;
+  line-height: 1em;
+}
+
+.rules-wrapper-text {
+  font-size: 1.5em;
+  color: variables.$color-text;
+}
