@@ -12,6 +12,12 @@ h6 {
   font-weight: 600;
 }
 
+a {
+  color: variables.$color-text;
+  text-decoration: underline;
+  font-family: 'Jost';
+}
+
 h2 {
   font-size: 2em;
   font-family: 'Jost';

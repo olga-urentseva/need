@@ -61,6 +61,10 @@
   color: variables.$color-secondary-darker;
 }
 
+.footer-wrapper__logo-link {
+  text-decoration: none;
+}
+
 @media (min-width: variables.$break-point) {
   .footer-wrapper {
     display: flex;

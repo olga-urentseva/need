@@ -5,10 +5,10 @@ block content
     h2.page-title Sign in
     .signin__wrapper.signin-wrapper
       form(class='form-signin', action='signin', method='post')
-        label.input-label E-mail
-          input(class='input-place', type='email', name='email', required)
-        label.input-label Password
-          input(class='input-place', type='password', name='password', required)
+        label.input-label(for='email') E-mail
+          input(class='input-place', id='email', type='email', name='email', required)
+        label.input-label(for='password') Password
+          input(class='input-place', id='password', type='password', name='password', required)
         .signin__submit
           button(class='submit-button button', type='submit', name='submit') Submit
           a.forgot-password-link(href="#") Forgot password
