@@ -1,0 +1,13 @@
+extends ../layouts/main.pug
+
+block content
+  .container
+    h2.page-title Sign in
+    .signin__wrapper.signin-wrapper
+      form(class='form-signin', action='signin', method='post')
+        label.input-label E-mail
+          input(class='input-place', type='email', name='email', required)
+        label.input-label Password
+          input(class='input-place', type='password', name='password', required)
+        button(class='submit-button button', type='submit', name='submit') Submit
+
