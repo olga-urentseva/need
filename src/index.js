@@ -2,6 +2,8 @@ const fastify = require('fastify')({ logger: true });
 const fs = require('fs/promises');
 const path = require('path');
 const fastifyStatic = require('fastify-static');
+const fastifySession = require('fastify-session');
+const fastifyCookie = require('fastify-cookie');
 
 fastify.register(require('point-of-view'), {
   engine: {
@@ -11,29 +13,40 @@ fastify.register(require('point-of-view'), {
   viewExt: 'pug',
 });
 
+fastify.register(fastifyCookie);
+fastify.register(fastifySession, {
+  secret: 'a secret with minimum length of 32 characters',
+  cookie: {
+    secure: 'auto',
+  },
+});
+
 fastify.register(fastifyStatic, {
   root: path.join(__dirname, '..', 'public'),
 });
 
-// Declare a route
+// Declare a routes
+
+// fastify.get('/logout', (request, reply) => {});
+
 fastify.get('/', (request, reply) => {
-  reply.view('pages/index', { text: 'text' });
+  reply.view('pages/index');
 });
 
 fastify.get('/about', (request, reply) => {
-  reply.view('pages/about', { text: 'text' });
+  reply.view('pages/about');
 });
 
 fastify.get('/rules', (request, reply) => {
-  reply.view('pages/rules', { text: 'text' });
+  reply.view('pages/rules');
 });
 
 fastify.get('/signin', (request, reply) => {
-  reply.view('pages/signin', { text: 'text' });
+  reply.view('pages/signin');
 });
 
 fastify.get('/signup', (request, reply) => {
-  reply.view('pages/signup', { text: 'text' });
+  reply.view('pages/signup');
 });
 
 fastify.setNotFoundHandler((request, reply) => {

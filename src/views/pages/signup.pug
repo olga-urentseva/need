@@ -7,6 +7,10 @@ block content
       form(action='/signup', method='post')
         label.input-label(for='email') Email
           input.input-place(type='email', id='email', name='email', placeholder='example@gmail.com' required)
+        label.input-label(for='name') Name
+          input.input-place(type='text', id='name', name='name' required)
+        label.input-label(for='lastName') Last name
+          input.input-place(type='text', id='lastName', name='lastName' required)
         label.input-label(for='password') Password
           input.input-place(type='password', id='password', name='password' required)
         label.input-label(for='password-confirmation') Password confirmation

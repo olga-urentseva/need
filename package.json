@@ -15,8 +15,13 @@
     "watch:styles": "sass --watch src/styles:public/styles"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "fastify": "^2.14.0",
+    "fastify-cookie": "^3.6.1",
+    "fastify-session": "^4.0.0",
     "fastify-static": "^2.7.0",
+    "knex": "^0.21.1",
+    "pg": "^8.2.1",
     "point-of-view": "^3.8.0",
     "pug": "^2.0.4"
   },
