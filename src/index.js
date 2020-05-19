@@ -1,9 +1,14 @@
+require('dotenv').config({ path: '../.env' });
+
 const fastify = require('fastify')({ logger: true });
 const fs = require('fs/promises');
 const path = require('path');
 const fastifyStatic = require('fastify-static');
 const fastifySession = require('fastify-session');
 const fastifyCookie = require('fastify-cookie');
+
+//build connection with db
+const pg = require('knex')(require('../knexfile'));
 
 fastify.register(require('point-of-view'), {
   engine: {
