@@ -3,6 +3,7 @@ extends ../layouts/main.pug
 block content
   .container
     h2.page-title Sign in
+    p.doneMessage #{doneMessage}
     .signin__wrapper.signin-wrapper
       form(class='form-signin', action='signin', method='post')
         label.input-label(for='email') E-mail

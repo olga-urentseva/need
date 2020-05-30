@@ -35,6 +35,19 @@ html(lang='en')
                   a.header-wrapper-menu__link.header-wrapper-menu-link(href='/logout')
                     img.logout-icon(src='/logout.svg')
     main.content
+      - const flashes = getFlashes()
+      if flashes
+        if flashes.info
+          .flashes-wrapper
+            each message in flashes.info
+              .container
+                .flash.flash--info #{message}
+        if flashes.warning
+          each message in flashes.warning
+            .flash.flash--warning #{message}
+        if flashes.error
+          each message in flashes.error
+            .flash.flash--error #{message}
       block content
     footer.footer
       .container

@@ -3,6 +3,7 @@ extends ../layouts/main.pug
 block content
   .container
     h2.page-title Sign up
+    p.error-message #{errorMessage}
     .signup__wrapper.signup-wrapper
       form(action='/signup', method='post')
         label.input-label(for='email') Email
@@ -10,13 +11,13 @@ block content
         label.input-label(for='name') Name
           input.input-place(type='text', id='name', name='name' required)
         label.input-label(for='lastName') Last name
-          input.input-place(type='text', id='lastName', name='lastName' required)
+          input.input-place(type='text', id='lastName', name='last_name' required)
         label.input-label(for='password') Password
           input.input-place(type='password', id='password', name='password' required)
         label.input-label(for='password-confirmation') Password confirmation
-          input.input-place(type='password', id='password-confirmation', name='password-confirmation' required)
+          input.input-place(type='password', id='passwordConfirmation', name='password_confirmation' required)
         .signup-wrapper__checkbox.checkbox
           input.checkbox(type='checkbox' id='checkbox' name='checkbox' required)
           label.input-label(for='checkbox') I'm agree with servise's&nbsp;
           a.input-label(href="#") rules
-        button(class='submit-button button', type='submit', name='signup') Sign up
+        button(class='submit-button button', type='submit', name='submit') Sign up

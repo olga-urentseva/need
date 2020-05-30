@@ -4,11 +4,14 @@ const fastify = require('fastify')({ logger: true });
 const fs = require('fs/promises');
 const path = require('path');
 const fastifyStatic = require('fastify-static');
-const fastifySession = require('fastify-session');
-const fastifyCookie = require('fastify-cookie');
+const fastifySession = require('fastify-secure-session');
+const fastifyFormBody = require('fastify-formbody'); // body of http request
+const fastifyFlash = require('fastify-flash');
+
+const pagesController = require('./controllers/pages-controller.js');
+const userController = require('./controllers/user-controller.js');
 
 //build connection with db
-const pg = require('knex')(require('../knexfile'));
 
 fastify.register(require('point-of-view'), {
   engine: {
@@ -18,44 +21,46 @@ fastify.register(require('point-of-view'), {
   viewExt: 'pug',
 });
 
-fastify.register(fastifyCookie);
 fastify.register(fastifySession, {
-  secret: 'a secret with minimum length of 32 characters',
+  secret: 'averylogphlasebiggerthanthirtstwochars',
   cookie: {
-    secure: 'auto',
+    secure: process.env.NODE_ENV === 'production',
   },
 });
+
+fastify.register(fastifyFlash);
+
+fastify.register(fastifyFormBody);
 
 fastify.register(fastifyStatic, {
   root: path.join(__dirname, '..', 'public'),
 });
 
-// Declare a routes
-
-// fastify.get('/logout', (request, reply) => {});
-
-fastify.get('/', (request, reply) => {
-  reply.view('pages/index');
+fastify.decorateReply('render', function (view, data = {}) {
+  this.view(view, { getFlashes: (...args) => this.flash(...args), ...data });
 });
 
-fastify.get('/about', (request, reply) => {
-  reply.view('pages/about');
-});
+fastify.get('/', pagesController.index);
 
-fastify.get('/rules', (request, reply) => {
-  reply.view('pages/rules');
-});
+fastify.get('/about', pagesController.about);
 
-fastify.get('/signin', (request, reply) => {
-  reply.view('pages/signin');
-});
+fastify.get('/rules', pagesController.rules);
 
-fastify.get('/signup', (request, reply) => {
-  reply.view('pages/signup');
-});
+fastify.get('/signin', userController.showSignin);
+
+fastify.get('/signup', userController.showSignup);
+
+fastify.post('/signup', userController.signup);
+
+// fastify.post('/signin', userController.signin);
 
 fastify.setNotFoundHandler((request, reply) => {
-  reply.status(404).view('pages/not-found');
+  reply.status(404).render('pages/not-found');
+});
+
+fastify.setErrorHandler((error, request, reply) => {
+  console.error(error);
+  reply.status(500).render('pages/server-error');
 });
 
 // Run the server!
