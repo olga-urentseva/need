@@ -75,11 +75,6 @@
   font-weight: 500;
 }
 
-.logout-icon {
-  width: 2rem;
-  display: none;
-}
-
 .menu-link:hover {
   text-decoration: underline;
   cursor: pointer;
@@ -116,6 +111,27 @@
   max-width: 40em;
 }
 
+.logout-icon,
+.user-icon,
+.profile-item,
+.logout-item {
+  width: 2rem;
+  margin: 0.2em 0;
+  display: none;
+}
+
+.login .user-icon,
+.login .logout-icon,
+.login .profile-item,
+.login .logout-item {
+  display: block;
+}
+
+.login .signin-item,
+.login .signup-item {
+  display: none;
+}
+
 @media (min-width: variables.$break-point) {
   .header-wrapper {
     flex-direction: row;
@@ -137,12 +153,12 @@
     flex-direction: row;
   }
 
-  .header__menu ul li {
-    margin: 0 1em;
+  .header__wrapper-menu {
+    margin: 0 -1em;
   }
 
-  .logout-icon {
-    display: block;
+  .header__menu ul li {
+    margin: 0 1em;
   }
 
   .header-wrapper-menu__delimeter-item {

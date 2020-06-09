@@ -1,0 +1,28 @@
+extends ../layouts/main.pug
+
+block content
+  .container
+    h2.page-title User profile
+    p.error-message #{errorMessage}
+    .conten-wrapper.content__wrapper
+      .user-info__wrapper.user-info-wrapper
+        .user-info__card
+          p.user-info-title Name:
+          p.user-info-input #{name}
+        .user-info__card
+          p.user-info-title Last name:
+          p.user-info-input #{lastName}
+        .user-info__card
+          p.user-info-title Email:
+          p.user-info-input #{email}
+      .change-info__wrapper.change-info-wrapper
+        p.user-info-title Change your password:
+        form(action='/profile', method='post')
+          label.input-label(for='currentPassword') Current password
+            input.input-place(type='password', id='currentPassword', name='currentPassword' required)
+          label.input-label(for='password') New password
+            input.input-place(type='password', id='newPassword', name='password' required)
+          label.input-label(for='passwordConfirmation') Password confirmation
+            input.input-place(type='password', id='passwordConfirmation', name='password_confirmation' required)
+          button(class='submit-button button', type='submit', name='submit') Change password
+
