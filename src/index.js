@@ -4,8 +4,8 @@ const fastify = require('fastify')({ logger: true });
 const fs = require('fs/promises');
 const path = require('path');
 const fastifyStatic = require('fastify-static');
-const fastifySession = require('fastify-secure-session');
 const fastifyFormBody = require('fastify-formbody'); // body of http request
+const fastifySession = require('fastify-secure-session');
 const fastifyFlash = require('fastify-flash');
 
 const pagesController = require('./controllers/pages-controller.js');
@@ -51,6 +51,10 @@ fastify.get('/signin', userController.showSignin);
 fastify.get('/signup', userController.showSignup);
 
 fastify.post('/signup', userController.signup);
+
+fastify.post('/signin', userController.signin);
+
+fastify.get('/logout', userController.logout);
 
 // fastify.post('/signin', userController.signin);
 

@@ -2,8 +2,8 @@ extends ../layouts/main.pug
 
 block content
   .container
-    h2.page-title Sign in
-    p.doneMessage #{doneMessage}
+    h2.page-title Sign up
+    p.error-message #{errorMessage}
     .signin__wrapper.signin-wrapper
       form(class='form-signin', action='signin', method='post')
         label.input-label(for='email') E-mail

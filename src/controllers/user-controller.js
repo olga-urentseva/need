@@ -1,34 +1,6 @@
 const argon2 = require('argon2'); // hashing
-const knex = require('knex')(require('../../knexfile'));
-const nodemailer = require('nodemailer');
-
-let transport = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,
-  debug: true,
-  logger: true,
-  auth: {
-    user: process.env.EMAIL_USERNAME,
-    pass: process.env.EMAIL_PASSWORD,
-  },
-});
-
-function sendEmail(email) {
-  const emailMessage = {
-    from: process.env.EMAIL_USERNAME,
-    to: email,
-    subject: 'The Need. Activation link',
-    text: 'Hello! This is your activation link: .',
-  };
-  transport.sendMail(emailMessage, function (err, info) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(info);
-    }
-  });
-}
+const knex = require('../knex');
+const mailer = require('../mailer');
 
 exports.signup = async function (request, reply) {
   const {
@@ -63,8 +35,39 @@ exports.signup = async function (request, reply) {
     'info',
     `The email with activation link has been sent to ${email}. Please check mailbox.`
   );
-  sendEmail(email);
+  mailer.send(
+    email,
+    'The Need: activation link',
+    'This is your actvation link'
+  );
   return reply.redirect('/signin');
+};
+
+exports.signin = async function (request, reply) {
+  request.session.delete();
+  const { email, password } = request.body;
+  if (email == ' ' || password == ' ') {
+    return reply.render('pages/signin', {
+      errorMessage: 'Please enter login and password',
+    });
+  }
+  const rowsFromDb = await knex('users').where({ email }).select('password');
+  if (
+    rowsFromDb.length === 0 ||
+    argon2.verify(rowsFromDb[0], password) === false
+  ) {
+    return reply.render('pages/signin', {
+      errorMessage: 'You entered the wrong email or password',
+    });
+  }
+  const session = request.session.get('data');
+  await knex('users').insert({ user_id: session }).where({ email });
+  return reply.redirect('/');
+};
+
+exports.logout = function (request, reply) {
+  request.session.delete();
+  reply.render('pages/index');
 };
 
 exports.showSignin = function (request, reply) {
