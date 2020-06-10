@@ -8,7 +8,7 @@ block content
       .user-info__wrapper.user-info-wrapper
         .user-info__card
           p.user-info-title Name:
-          p.user-info-input #{name}
+          p.user-info-input #{name} Name
         .user-info__card
           p.user-info-title Last name:
           p.user-info-input #{lastName}
@@ -16,7 +16,7 @@ block content
           p.user-info-title Email:
           p.user-info-input #{email}
       .change-info__wrapper.change-info-wrapper
-        p.user-info-title Change your password:
+        p.user-change-info-title Change your password:
         form(action='/profile', method='post')
           label.input-label(for='currentPassword') Current password
             input.input-place(type='password', id='currentPassword', name='currentPassword' required)

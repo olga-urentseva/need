@@ -50,11 +50,15 @@ fastify.get('/signin', userController.showSignin);
 
 fastify.get('/signup', userController.showSignup);
 
+fastify.get('/profile', userController.showProfile);
+
 fastify.post('/signup', userController.signup);
 
 fastify.post('/signin', userController.signin);
 
 fastify.get('/logout', userController.logout);
+
+fastify.post('/profile', userController.changeProfileInfo);
 
 // fastify.post('/signin', userController.signin);
 

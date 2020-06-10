@@ -60,8 +60,27 @@ exports.signin = async function (request, reply) {
       errorMessage: 'You entered the wrong email or password',
     });
   }
-  const session = request.session.get('data');
-  await knex('users').insert({ user_id: session }).where({ email });
+  const userId = await knex('users').select({ user_id }).where({ email });
+  session.get('data') = userId;
+  return reply.redirect('/');
+};
+
+exports.changeProfileInfo = function (request, reply) {
+  const { currentPassword, newPassword, passwordConfirmation } = request.body;
+  if (newPassword != passwordConfirmation) {
+    return reply.render('pages/profile', {
+      errorMessage: 'New Password and Password Confirmation must be the same.',
+    });
+  }
+
+  // take an information about user from session
+  const hashPasswordDb = knex('users').select('password').where({ email });
+  if (argon2.verify(hashPasswordDb, currentPassword)) {
+    return reply.render('pages/profile', {
+      errorMessage: 'Your Current password does not match.',
+    });
+  }
+  request.flash('You have successfully changed your password');
   return reply.redirect('/');
 };
 
@@ -76,4 +95,8 @@ exports.showSignin = function (request, reply) {
 
 exports.showSignup = function (request, reply) {
   reply.render('pages/signup');
+};
+
+exports.showProfile = function (request, reply) {
+  reply.render('pages/profile');
 };

@@ -1,0 +1,23 @@
+@use '../variables';
+
+.user-info__card {
+  display: flex;
+  flex-direction: row;
+  margin: 0 -0.5em;
+}
+
+.user-info-title,
+.user-info-input {
+  margin: 0 0.5em;
+}
+
+.user-info-title {
+  color: variables.$color-text-accent;
+}
+
+.user-change-info-title {
+  color: variables.$color-text-accent;
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 1.5em 0 0.5em 0;
+}
