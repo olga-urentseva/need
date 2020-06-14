@@ -8,21 +8,21 @@ block content
       .user-info__wrapper.user-info-wrapper
         .user-info__card
           p.user-info-title Name:
-          p.user-info-input #{name} Name
+          p.user-info-input #{currentUser.name}
         .user-info__card
           p.user-info-title Last name:
-          p.user-info-input #{lastName}
+          p.user-info-input #{currentUser.last_name}
         .user-info__card
           p.user-info-title Email:
-          p.user-info-input #{email}
+          p.user-info-input #{currentUser.email}
       .change-info__wrapper.change-info-wrapper
         p.user-change-info-title Change your password:
         form(action='/profile', method='post')
-          label.input-label(for='currentPassword') Current password
-            input.input-place(type='password', id='currentPassword', name='currentPassword' required)
-          label.input-label(for='password') New password
-            input.input-place(type='password', id='newPassword', name='password' required)
-          label.input-label(for='passwordConfirmation') Password confirmation
-            input.input-place(type='password', id='passwordConfirmation', name='password_confirmation' required)
+          label.input-label(for='current-password') Current password
+            input.input-place(type='password', id='current-password', name='current_password' required)
+          label.input-label(for='new-password') New password
+            input.input-place(type='password', id='new-password', name='new_password' required)
+          label.input-label(for='password-confirmation') Password confirmation
+            input.input-place(type='password', id='password-confirmation', name='password_confirmation' required)
           button(class='submit-button button', type='submit', name='submit') Change password
 

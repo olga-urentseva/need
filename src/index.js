@@ -8,10 +8,10 @@ const fastifyFormBody = require('fastify-formbody'); // body of http request
 const fastifySession = require('fastify-secure-session');
 const fastifyFlash = require('fastify-flash');
 
+const knex = require('./knex');
+
 const pagesController = require('./controllers/pages-controller.js');
 const userController = require('./controllers/user-controller.js');
-
-//build connection with db
 
 fastify.register(require('point-of-view'), {
   engine: {
@@ -22,7 +22,7 @@ fastify.register(require('point-of-view'), {
 });
 
 fastify.register(fastifySession, {
-  secret: 'averylogphlasebiggerthanthirtstwochars',
+  secret: process.env.SESSION_KEY,
   cookie: {
     secure: process.env.NODE_ENV === 'production',
   },
@@ -36,8 +36,25 @@ fastify.register(fastifyStatic, {
   root: path.join(__dirname, '..', 'public'),
 });
 
+fastify.decorateRequest('currentUser', null);
+
+fastify.addHook('preHandler', async (req) => {
+  const userId = req.session.get('userId');
+  if (!userId) {
+    return;
+  }
+  const userInfo = await knex('users').where({ user_id: userId });
+  if (userInfo.length > 0) {
+    req.currentUser = userInfo[0];
+  }
+});
+
 fastify.decorateReply('render', function (view, data = {}) {
-  this.view(view, { getFlashes: (...args) => this.flash(...args), ...data });
+  this.view(view, {
+    currentUser: this.request.currentUser,
+    getFlashes: (...args) => this.flash(...args),
+    ...data,
+  });
 });
 
 fastify.get('/', pagesController.index);
@@ -52,6 +69,10 @@ fastify.get('/signup', userController.showSignup);
 
 fastify.get('/profile', userController.showProfile);
 
+fastify.get('/termofuse', pagesController.termofuse);
+
+fastify.get('/askhelp', userController.showAskHelp);
+
 fastify.post('/signup', userController.signup);
 
 fastify.post('/signin', userController.signin);
@@ -60,7 +81,7 @@ fastify.get('/logout', userController.logout);
 
 fastify.post('/profile', userController.changeProfileInfo);
 
-// fastify.post('/signin', userController.signin);
+fastify.post('/askhelp', userController.askHelp);
 
 fastify.setNotFoundHandler((request, reply) => {
   reply.status(404).render('pages/not-found');

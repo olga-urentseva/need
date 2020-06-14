@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node src/index.js",
     "start:dev": "run-p dev-server styles",
-    "dev-server": "nodemon | pino-pretty",
+    "dev-server": "nodemon --inspect | pino-pretty",
     "styles": "run-p build:styles watch:styles",
     "build:styles": "sass src/styles:public/styles",
     "watch:styles": "sass --watch src/styles:public/styles"

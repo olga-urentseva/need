@@ -9,3 +9,7 @@ exports.about = function (request, reply) {
 exports.rules = function (request, reply) {
   reply.render('pages/rules');
 };
+
+exports.termofuse = function (request, reply) {
+  reply.render('pages/termofuse');
+};

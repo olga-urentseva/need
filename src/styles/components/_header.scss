@@ -117,19 +117,6 @@
 .logout-item {
   width: 2rem;
   margin: 0.2em 0;
-  display: none;
-}
-
-.login .user-icon,
-.login .logout-icon,
-.login .profile-item,
-.login .logout-item {
-  display: block;
-}
-
-.login .signin-item,
-.login .signup-item {
-  display: none;
 }
 
 @media (min-width: variables.$break-point) {

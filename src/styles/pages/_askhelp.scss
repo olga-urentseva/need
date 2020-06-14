@@ -1,0 +1,31 @@
+@use '../variables';
+
+.card-wrapper__description {
+  height: 10em;
+}
+
+.card-wrapper__address {
+  height: 5em;
+}
+
+.form-askhelp {
+  margin: 0 1em;
+}
+
+.card-wrapper__picture {
+  flex: 1 1 auto;
+  max-width: 40em;
+  margin: 0 1em;
+}
+
+.card-wrapper {
+  margin: 0 -1em;
+}
+
+@media (min-width: variables.$break-point) {
+  .card-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

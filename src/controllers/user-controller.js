@@ -1,4 +1,4 @@
-const argon2 = require('argon2'); // hashing
+const argon2 = require('argon2');
 const knex = require('../knex');
 const mailer = require('../mailer');
 
@@ -18,7 +18,7 @@ exports.signup = async function (request, reply) {
   }
   const isEmailTaken =
     (await knex('users').where({ email: email }).select('email')).length > 0;
-  const hash = await argon2.hash(password); // hashing password
+  const hash = await argon2.hash(password);
   if (isEmailTaken) {
     return reply.render('pages/signup', {
       errorMessage:
@@ -44,49 +44,63 @@ exports.signup = async function (request, reply) {
 };
 
 exports.signin = async function (request, reply) {
-  request.session.delete();
   const { email, password } = request.body;
   if (email == ' ' || password == ' ') {
     return reply.render('pages/signin', {
       errorMessage: 'Please enter login and password',
     });
   }
-  const rowsFromDb = await knex('users').where({ email }).select('password');
+  const rowsFromDb = await knex('users').where({ email });
+
   if (
     rowsFromDb.length === 0 ||
-    argon2.verify(rowsFromDb[0], password) === false
+    !(await argon2.verify(rowsFromDb[0].password, password))
   ) {
     return reply.render('pages/signin', {
       errorMessage: 'You entered the wrong email or password',
     });
   }
-  const userId = await knex('users').select({ user_id }).where({ email });
-  session.get('data') = userId;
+  const user = rowsFromDb[0];
+  request.session.set('userId', user.user_id);
   return reply.redirect('/');
 };
 
-exports.changeProfileInfo = function (request, reply) {
-  const { currentPassword, newPassword, passwordConfirmation } = request.body;
+exports.changeProfileInfo = async function (request, reply) {
+  const {
+    current_password: currentPassword,
+    new_password: newPassword,
+    password_confirmation: passwordConfirmation,
+  } = request.body;
   if (newPassword != passwordConfirmation) {
     return reply.render('pages/profile', {
       errorMessage: 'New Password and Password Confirmation must be the same.',
     });
   }
-
-  // take an information about user from session
-  const hashPasswordDb = knex('users').select('password').where({ email });
-  if (argon2.verify(hashPasswordDb, currentPassword)) {
+  const isPasswordsMatches = await argon2.verify(
+    request.currentUser.password,
+    currentPassword
+  );
+  if (!isPasswordsMatches) {
     return reply.render('pages/profile', {
       errorMessage: 'Your Current password does not match.',
     });
   }
-  request.flash('You have successfully changed your password');
-  return reply.redirect('/');
+
+  const newHashPassword = await argon2.hash(newPassword);
+  await knex('users')
+    .where({ email: request.currentUser.email })
+    .update({ password: newHashPassword });
+  request.flash('info', 'You have successfully changed your password');
+  return reply.redirect('/profile');
+};
+
+exports.askHelp = function (request, reply) {
+  return reply.render('pages/askhelp');
 };
 
 exports.logout = function (request, reply) {
   request.session.delete();
-  reply.render('pages/index');
+  return reply.redirect('/');
 };
 
 exports.showSignin = function (request, reply) {
@@ -98,5 +112,16 @@ exports.showSignup = function (request, reply) {
 };
 
 exports.showProfile = function (request, reply) {
+  if (!request.currentUser) {
+    return reply.redirect('/');
+  }
   reply.render('pages/profile');
+};
+
+exports.showAskHelp = function (request, reply) {
+  if (!request.currentUser) {
+    request.flash('info', `You have to Sign in`);
+    return reply.redirect('/signin');
+  }
+  reply.render('pages/askhelp');
 };
