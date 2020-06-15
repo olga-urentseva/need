@@ -73,15 +73,19 @@ fastify.get('/termofuse', pagesController.termofuse);
 
 fastify.get('/askhelp', userController.showAskHelp);
 
+fastify.get('/logout', userController.logout);
+
+fastify.get('/helpto', userController.showHelpTo);
+
 fastify.post('/signup', userController.signup);
 
 fastify.post('/signin', userController.signin);
 
-fastify.get('/logout', userController.logout);
-
 fastify.post('/profile', userController.changeProfileInfo);
 
 fastify.post('/askhelp', userController.askHelp);
+
+fastify.post('/helpto', userController.helpTo);
 
 fastify.setNotFoundHandler((request, reply) => {
   reply.status(404).render('pages/not-found');

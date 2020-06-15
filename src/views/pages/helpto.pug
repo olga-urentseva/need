@@ -1,0 +1,9 @@
+extends ../layouts/main.pug
+
+block content
+  .container
+    h2.page-title Help to
+    - for (let row of rows)
+      #{console.log(row['description'])}
+      p #{row['description']}
+

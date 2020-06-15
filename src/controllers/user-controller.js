@@ -12,18 +12,20 @@ exports.signup = async function (request, reply) {
   } = request.body;
 
   if (password !== passwordConfirmation) {
-    return reply.render('pages/signup', {
+    reply.render('pages/signup', {
       errorMessage: 'Password and password confirmation must be the same',
     });
+    return reply;
   }
   const isEmailTaken =
     (await knex('users').where({ email: email }).select('email')).length > 0;
   const hash = await argon2.hash(password);
   if (isEmailTaken) {
-    return reply.render('pages/signup', {
+    reply.render('pages/signup', {
       errorMessage:
         'This email already taken. Please choose another one or use this email to sign in.',
     });
+    return reply;
   }
   await knex('users').insert({
     email,
@@ -40,15 +42,17 @@ exports.signup = async function (request, reply) {
     'The Need: activation link',
     'This is your actvation link'
   );
-  return reply.redirect('/signin');
+  reply.redirect('/signin');
+  return reply;
 };
 
 exports.signin = async function (request, reply) {
   const { email, password } = request.body;
   if (email == ' ' || password == ' ') {
-    return reply.render('pages/signin', {
+    reply.render('pages/signin', {
       errorMessage: 'Please enter login and password',
     });
+    return reply;
   }
   const rowsFromDb = await knex('users').where({ email });
 
@@ -56,13 +60,15 @@ exports.signin = async function (request, reply) {
     rowsFromDb.length === 0 ||
     !(await argon2.verify(rowsFromDb[0].password, password))
   ) {
-    return reply.render('pages/signin', {
+    reply.render('pages/signin', {
       errorMessage: 'You entered the wrong email or password',
     });
+    return reply;
   }
   const user = rowsFromDb[0];
   request.session.set('userId', user.user_id);
-  return reply.redirect('/');
+  reply.redirect('/');
+  return reply;
 };
 
 exports.changeProfileInfo = async function (request, reply) {
@@ -72,18 +78,20 @@ exports.changeProfileInfo = async function (request, reply) {
     password_confirmation: passwordConfirmation,
   } = request.body;
   if (newPassword != passwordConfirmation) {
-    return reply.render('pages/profile', {
+    reply.render('pages/profile', {
       errorMessage: 'New Password and Password Confirmation must be the same.',
     });
+    return reply;
   }
   const isPasswordsMatches = await argon2.verify(
     request.currentUser.password,
     currentPassword
   );
   if (!isPasswordsMatches) {
-    return reply.render('pages/profile', {
+    reply.render('pages/profile', {
       errorMessage: 'Your Current password does not match.',
     });
+    return reply;
   }
 
   const newHashPassword = await argon2.hash(newPassword);
@@ -91,14 +99,16 @@ exports.changeProfileInfo = async function (request, reply) {
     .where({ email: request.currentUser.email })
     .update({ password: newHashPassword });
   request.flash('info', 'You have successfully changed your password');
-  return reply.redirect('/profile');
+  reply.redirect('/profile');
+  return reply;
 };
 
 exports.askHelp = async function (request, reply) {
   const descriptionOfAnnouncement = request.body;
   if (!descriptionOfAnnouncement) {
     request.flash('info', 'Please, enter the text of your announcement');
-    return reply.redirect('/helpto');
+    reply.redirect('/helpto');
+    return reply;
   }
   await knex('announcements').insert({
     user_id: request.currentUser.usesr_id,
@@ -108,8 +118,11 @@ exports.askHelp = async function (request, reply) {
     'info',
     'You have successfully added a new announcement. It is perfect time to help others'
   );
-  return reply.redirect('/');
+  reply.redirect('/');
+  return reply;
 };
+
+exports.helpTo = function (request, reply) {};
 
 exports.logout = function (request, reply) {
   request.session.delete();
@@ -137,4 +150,15 @@ exports.showAskHelp = function (request, reply) {
     return reply.redirect('/signin');
   }
   reply.render('pages/askhelp');
+};
+
+exports.showHelpTo = async function (request, reply) {
+  if (!request.currentUser) {
+    request.flash('info', `You have to Sign in`);
+    reply.redirect('/signin');
+    return reply;
+  }
+  const rowsOfAnnouncements = await knex('announcements').select('description');
+  reply.render('pages/helpto', { rows: rowsOfAnnouncements });
+  return reply;
 };
