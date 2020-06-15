@@ -94,8 +94,21 @@ exports.changeProfileInfo = async function (request, reply) {
   return reply.redirect('/profile');
 };
 
-exports.askHelp = function (request, reply) {
-  return reply.render('pages/askhelp');
+exports.askHelp = async function (request, reply) {
+  const descriptionOfAnnouncement = request.body;
+  if (!descriptionOfAnnouncement) {
+    request.flash('info', 'Please, enter the text of your announcement');
+    return reply.redirect('/helpto');
+  }
+  await knex('announcements').insert({
+    user_id: request.currentUser.usesr_id,
+    description: descriptionOfAnnouncement,
+  });
+  request.flash(
+    'info',
+    'You have successfully added a new announcement. It is perfect time to help others'
+  );
+  return reply.redirect('/');
 };
 
 exports.logout = function (request, reply) {
