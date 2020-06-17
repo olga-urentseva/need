@@ -3,7 +3,9 @@ extends ../layouts/main.pug
 block content
   .container
     h2.page-title Help to
-    - for (let row of rows)
-      #{console.log(row['description'])}
-      p #{row['description']}
+      .announcements__wrapper.announcements-wrapper
+        - for (let row of rows)
+          .announcements-wrapper__card.announcements-card.card
+            p.announcements-card__text #{row['description']}
+            button.announcements-card__button.announcements-card-button Help
 

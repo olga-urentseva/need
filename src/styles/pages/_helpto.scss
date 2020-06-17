@@ -1,0 +1,25 @@
+@use '../variables';
+
+.announcements-wrapper__card {
+  margin: 0.5em 0;
+}
+
+.announcements-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.announcements-card__text {
+  color: variables.$color-text;
+  padding: 0.5em 0.5em;
+  font-size: 0.5em;
+  margin-right: 2em;
+}
+
+.announcements-card__button {
+  position: absolute;
+  right: -2em;
+}

@@ -16,16 +16,30 @@
   box-shadow: 0px 10px 14px -7px #141207;
 }
 
-.button:hover {
-  background: linear-gradient(to bottom, #f0bd18 5%, #eec43a 100%);
-  background-color: #ecbf29;
+.button:hover,
+.announcements-card__button:hover {
+  background-color: #ffd64e;
 }
 
-.button:active {
+.button:active,
+.announcements-card__button:active {
   position: relative;
   top: 0.1rem;
 }
 
 .submit-button {
   min-width: 7em;
+}
+
+.announcements-card-button {
+  font-family: 'Jost';
+  font-weight: 600;
+  box-shadow: 0px 2px 5px 0px #b48f14;
+  flex: none;
+  border: none;
+  background-color: transparent;
+  width: 5em;
+  height: 5em;
+  background-color: variables.$color-accent;
+  border-radius: 50%;
 }

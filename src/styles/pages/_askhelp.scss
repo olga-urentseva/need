@@ -1,7 +1,7 @@
 @use '../variables';
 
 .card-wrapper__description {
-  height: 10em;
+  height: 15em;
 }
 
 .card-wrapper__address {
@@ -12,18 +12,18 @@
   margin: 0 1em;
 }
 
-.card-wrapper__picture {
+.askhelp-wrapper__picture {
   flex: 1 1 auto;
   max-width: 40em;
   margin: 0 1em;
 }
 
-.card-wrapper {
+.askhelp-wrapper {
   margin: 0 -1em;
 }
 
 @media (min-width: variables.$break-point) {
-  .card-wrapper {
+  .askhelp-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;

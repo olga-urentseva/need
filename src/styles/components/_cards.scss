@@ -1,0 +1,7 @@
+@use '../variables';
+
+.card {
+  background-color: variables.$color-secondary-light;
+  max-width: 30em;
+  border-radius: 0.5em;
+}

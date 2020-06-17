@@ -105,14 +105,14 @@ exports.changeProfileInfo = async function (request, reply) {
 
 exports.askHelp = async function (request, reply) {
   const descriptionOfAnnouncement = request.body;
-  if (!descriptionOfAnnouncement) {
+  if (!descriptionOfAnnouncement.help_description) {
     request.flash('info', 'Please, enter the text of your announcement');
     reply.redirect('/helpto');
     return reply;
   }
   await knex('announcements').insert({
     user_id: request.currentUser.usesr_id,
-    description: descriptionOfAnnouncement,
+    description: descriptionOfAnnouncement.help_description,
   });
   request.flash(
     'info',
@@ -158,7 +158,8 @@ exports.showHelpTo = async function (request, reply) {
     reply.redirect('/signin');
     return reply;
   }
-  const rowsOfAnnouncements = await knex('announcements').select('description');
+  const rowsOfAnnouncements = await knex('announcements');
+  console.log(rowsOfAnnouncements);
   reply.render('pages/helpto', { rows: rowsOfAnnouncements });
   return reply;
 };

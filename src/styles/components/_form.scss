@@ -23,7 +23,8 @@
 }
 
 @media (min-width: variables.$break-point) {
-  .input-place {
-    width: 25em;
+  .form-askhelp {
+    min-width: 40em;
+    max-width: 50em;
   }
 }
