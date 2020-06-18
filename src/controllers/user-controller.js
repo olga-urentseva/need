@@ -28,8 +28,8 @@ exports.signup = async function (request, reply) {
     return reply;
   }
   await knex('users').insert({
-    email,
     name,
+    email,
     last_name: lastName,
     password: hash,
   });
@@ -66,7 +66,7 @@ exports.signin = async function (request, reply) {
     return reply;
   }
   const user = rowsFromDb[0];
-  request.session.set('userId', user.user_id);
+  request.session.set('userId', user.id);
   reply.redirect('/');
   return reply;
 };
@@ -111,7 +111,7 @@ exports.askHelp = async function (request, reply) {
     return reply;
   }
   await knex('announcements').insert({
-    user_id: request.currentUser.usesr_id,
+    user_id: request.currentUser.id,
     description: descriptionOfAnnouncement.help_description,
   });
   request.flash(

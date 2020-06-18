@@ -43,7 +43,7 @@ fastify.addHook('preHandler', async (req) => {
   if (!userId) {
     return;
   }
-  const userInfo = await knex('users').where({ user_id: userId });
+  const userInfo = await knex('users').where({ id: userId });
   if (userInfo.length > 0) {
     req.currentUser = userInfo[0];
   }
