@@ -15,12 +15,16 @@
 
 .announcements-card__text {
   color: variables.$color-text;
-  padding: 0.5em 0.5em;
-  font-size: 0.5em;
+  padding: 0.2em 0.5em;
+  font-size: 1em;
   margin-right: 2em;
 }
 
-.announcements-card__button {
+.announcements-card__button-link {
   position: absolute;
   right: -2em;
+}
+
+.input-place-message {
+  height: 5em;
 }

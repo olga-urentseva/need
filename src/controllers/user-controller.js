@@ -118,7 +118,7 @@ exports.askHelp = async function (request, reply) {
     'info',
     'You have successfully added a new announcement. It is perfect time to help others'
   );
-  reply.redirect('/');
+  reply.redirect('/helpto');
   return reply;
 };
 

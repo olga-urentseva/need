@@ -3,9 +3,18 @@ extends ../layouts/main.pug
 block content
   .container
     h2.page-title Help to
-      .announcements__wrapper.announcements-wrapper
-        - for (let row of rows)
-          .announcements-wrapper__card.announcements-card.card
-            p.announcements-card__text #{row['description']}
-            button.announcements-card__button.announcements-card-button Help
+    .announcements__wrapper.announcements-wrapper
+      - for (let row of rows)
+        .announcements-wrapper__card.announcements-card.card
+          p.announcements-card__text #{row['description']}
+          a.announcements-card__button-link(href="/helpto:announcementId")
+            button.announcements-card__button.announcements-card-button(id='help-button') Help
+
+
+      //- form.help-to__form.help-to-form(action="/helpto")
+      //-   lable.input-label(for='input_place_phone') Your phone number
+      //-     input.input-place(name='input_place_phone', required)
+      //-   lable.input-label(for='input_place_message') Message
+      //-     textarea.card.input-place.input-place-message(name='input_place', maxlength='255', required, placeholder='I can help you', id='textarea')
+      //-     p.form__character-number(id='character-number') 0 / 255
 

@@ -6,13 +6,13 @@
 }
 
 .input-place {
+  max-width: 40em;
   display: block;
   border: none;
   border-radius: 1em;
   border: variables.$color-secondary-darker solid 1px;
   height: 3em;
   padding: 1em;
-  width: 100%;
 }
 
 .submit-button {
@@ -20,6 +20,12 @@
   font-size: 1em;
   height: 2em;
   background-color: variables.$color-button--active;
+}
+
+.form__character-number {
+  float: right;
+  margin: 0;
+  margin-top: -1em;
 }
 
 @media (min-width: variables.$break-point) {
