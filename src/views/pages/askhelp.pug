@@ -8,7 +8,7 @@ block content
       form.ask-help__form(class='form-askhelp', action='askhelp', method='post')
         label.input-label(for='help-description') I'd like if you...
           textarea.input-place.ask-help-description(name='help_description', id='help-description', maxlength='255', required, placeholder='Example: I left an umbrella in a coffee shop. I will pick him it later in the evening. Take it, please, to the waiter. Lalalala str, 45, coffe shop "CoffeTime')
-          p.form-askhelp__character-number(id='character-number') 0 / 255
+          p.form__character-number.form-askhelp__character-number(id='character-number') 0 / 255
         button(class='submit-button button', type='submit') Ask help
       img.askhelp-wrapper__picture(src="people.svg", alt="People image")
 block js

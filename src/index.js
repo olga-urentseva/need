@@ -85,8 +85,6 @@ fastify.post('/profile', userController.changeProfileInfo);
 
 fastify.post('/askhelp', userController.askHelp);
 
-fastify.post('/helpto', userController.helpTo);
-
 fastify.setNotFoundHandler((request, reply) => {
   reply.status(404).render('pages/not-found');
 });

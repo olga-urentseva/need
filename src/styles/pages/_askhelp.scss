@@ -1,25 +1,17 @@
 @use '../variables';
 
+.ask-help__form {
+  margin: 0;
+}
+
 .ask-help-description {
   height: 15em;
+  width: 100%;
+  max-width: none;
 }
 
-.card-wrapper__address {
-  height: 5em;
-}
-
-.form-askhelp {
-  margin: 0 1em;
-}
-
-.askhelp-wrapper__picture {
-  flex: 1 1 auto;
-  max-width: 40em;
-  margin: 0 1em;
-}
-
-.askhelp-wrapper {
-  margin: 0 -1em;
+.form-askhelp__character-number {
+  margin-top: -1em;
 }
 
 @media (min-width: variables.$break-point) {
@@ -27,5 +19,14 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  .ask-help-description {
+    min-width: 30em;
+  }
+
+  .askhelp-wrapper__picture {
+    flex-grow: 2;
+    max-width: 40em;
   }
 }

@@ -122,7 +122,7 @@ exports.askHelp = async function (request, reply) {
   return reply;
 };
 
-exports.helpTo = function (request, reply) {};
+
 
 exports.logout = function (request, reply) {
   request.session.delete();
