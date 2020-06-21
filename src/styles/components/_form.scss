@@ -6,7 +6,7 @@
 }
 
 .input-place {
-  max-width: 40em;
+  width: 100%;
   display: block;
   border: none;
   border-radius: 1em;
@@ -24,4 +24,10 @@
 
 .form__character-number {
   float: right;
+}
+
+@media (min-width: variables.$break-point) {
+  .input-place {
+    width: 30em;
+  }
 }
