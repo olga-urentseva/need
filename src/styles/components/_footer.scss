@@ -4,6 +4,11 @@
   background-color: variables.$color-primary;
 }
 
+.footer__logo {
+  display: flex;
+  align-items: center;
+}
+
 .footer-wrapper {
   margin-top: 1em;
 }
@@ -70,6 +75,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    height: 10em;
   }
 
   .footer-wrapper__column {
