@@ -28,6 +28,6 @@
 
 @media (min-width: variables.$break-point) {
   .input-place {
-    width: 30em;
+    max-width: 40em;
   }
 }

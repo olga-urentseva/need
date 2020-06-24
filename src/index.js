@@ -12,6 +12,7 @@ const knex = require('./knex');
 
 const pagesController = require('./controllers/pages-controller.js');
 const userController = require('./controllers/user-controller.js');
+const announcementsController = require('./controllers/announcements-controller');
 
 fastify.register(require('point-of-view'), {
   engine: {
@@ -38,14 +39,14 @@ fastify.register(fastifyStatic, {
 
 fastify.decorateRequest('currentUser', null);
 
-fastify.addHook('preHandler', async (req) => {
-  const userId = req.session.get('userId');
+fastify.addHook('preHandler', async (request) => {
+  const userId = request.session.get('userId');
   if (!userId) {
     return;
   }
   const userInfo = await knex('users').where({ id: userId });
   if (userInfo.length > 0) {
-    req.currentUser = userInfo[0];
+    request.currentUser = userInfo[0];
   }
 });
 
@@ -71,11 +72,13 @@ fastify.get('/profile', userController.showProfile);
 
 fastify.get('/termofuse', pagesController.termofuse);
 
-fastify.get('/askhelp', userController.showAskHelp);
+fastify.get('/askhelp', announcementsController.showAskHelp);
 
 fastify.get('/logout', userController.logout);
 
-fastify.get('/helpto', userController.showHelpTo);
+fastify.get('/announcements', announcementsController.showAnnouncements);
+
+fastify.get('/announcements/:id', announcementsController.showHelpToForm);
 
 fastify.post('/signup', userController.signup);
 
@@ -83,7 +86,7 @@ fastify.post('/signin', userController.signin);
 
 fastify.post('/profile', userController.changeProfileInfo);
 
-fastify.post('/askhelp', userController.askHelp);
+fastify.post('/askhelp', announcementsController.askHelp);
 
 fastify.setNotFoundHandler((request, reply) => {
   reply.status(404).render('pages/not-found');

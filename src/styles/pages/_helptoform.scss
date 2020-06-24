@@ -1,0 +1,11 @@
+@use '../variables';
+
+.help-form__message {
+  height: 10em;
+}
+
+@media (min-width: variables.$break-point) {
+  .help-to-form {
+    width: 30em;
+  }
+}

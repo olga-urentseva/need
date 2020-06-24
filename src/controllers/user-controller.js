@@ -103,27 +103,6 @@ exports.changeProfileInfo = async function (request, reply) {
   return reply;
 };
 
-exports.askHelp = async function (request, reply) {
-  const descriptionOfAnnouncement = request.body;
-  if (!descriptionOfAnnouncement.help_description) {
-    request.flash('info', 'Please, enter the text of your announcement');
-    reply.redirect('/helpto');
-    return reply;
-  }
-  await knex('announcements').insert({
-    user_id: request.currentUser.id,
-    description: descriptionOfAnnouncement.help_description,
-  });
-  request.flash(
-    'info',
-    'You have successfully added a new announcement. It is perfect time to help others'
-  );
-  reply.redirect('/helpto');
-  return reply;
-};
-
-
-
 exports.logout = function (request, reply) {
   request.session.delete();
   return reply.redirect('/');
@@ -138,28 +117,9 @@ exports.showSignup = function (request, reply) {
 };
 
 exports.showProfile = function (request, reply) {
+  request.session.delete();
   if (!request.currentUser) {
     return reply.redirect('/');
   }
   reply.render('pages/profile');
-};
-
-exports.showAskHelp = function (request, reply) {
-  if (!request.currentUser) {
-    request.flash('info', `You have to Sign in`);
-    return reply.redirect('/signin');
-  }
-  reply.render('pages/askhelp');
-};
-
-exports.showHelpTo = async function (request, reply) {
-  if (!request.currentUser) {
-    request.flash('info', `You have to Sign in`);
-    reply.redirect('/signin');
-    return reply;
-  }
-  const rowsOfAnnouncements = await knex('announcements');
-  console.log(rowsOfAnnouncements);
-  reply.render('pages/helpto', { rows: rowsOfAnnouncements });
-  return reply;
 };

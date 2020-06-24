@@ -1,0 +1,16 @@
+extends ../layouts/main.pug
+
+block content
+  .container
+    h2.page-title I wanna help you!
+    p When you submit the form, person, who made an announcement, will get the email message with your information.
+    form.help-to__form.help-to-form(method='post', action='/announcements/' + id.id)
+      lable.input-label(for='input_place_phone') Your phone number
+        input.input-place(type='tel', name='input_place_phone', placeholder='+480000000', pattern='[+]{1}[0-9]{11,14}', required)
+      lable.input-label.help-form__message(for='textarea') Message
+        textarea.input-place.input-place-message(name='input_place', maxlength='255', required, placeholder='I can help you', id='textarea')
+        p.form__character-number(id='character-number') 0 / 255
+      button(class='submit-button button', type='submit', name='submit') Submit
+
+block js
+  script(src='/js/components/form.js')
