@@ -1,5 +1,44 @@
 @use '../variables';
 
+.final__wrapper {
+  margin: -1em;
+}
+
+.final-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.final-wrapper__message-place {
+  margin: 1em;
+}
+
+.message-place__title {
+  font-size: 2em;
+  color: variables.$color-text-accent;
+  margin: 0;
+}
+
+.message-place__message {
+  margin: 0;
+  font-size: 1.5em;
+  color: variables.$color-text;
+}
+
 .final-image {
-  width: 30em;
+  order: 2;
+  margin: 1em;
+  max-width: 30em;
+}
+
+@media (min-width: variables.$break-point) {
+  .final-wrapper {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .final-image {
+    width: 60%;
+  }
 }

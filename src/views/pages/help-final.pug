@@ -3,4 +3,8 @@ extends ../layouts/main.pug
 block content
   .container
     h2.page-title You are great!
-    img.final-image(src="/final-photo.svg", alt="happy person")
+    .final__wrapper.final-wrapper
+      img.final-image(src="/final-photo.svg", alt="happy person")
+      .final-wrapper__message-place
+        p.message-place__title Thank you,  #{user.name}!
+        p.message-place__message Your message and phone number were sent to the email address of the person who posted the announcement. Thank you for responding to the help. You are the best!
