@@ -26,6 +26,7 @@ fastify.register(fastifySession, {
   secret: process.env.SESSION_KEY,
   cookie: {
     secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
   },
 });
 
@@ -80,6 +81,8 @@ fastify.get('/announcements', announcementsController.showAnnouncements);
 
 fastify.get('/announcements/:id', announcementsController.showHelpToForm);
 
+fastify.get('/final', announcementsController.showFinal);
+
 fastify.post('/signup', userController.signup);
 
 fastify.post('/signin', userController.signin);
@@ -87,6 +90,8 @@ fastify.post('/signin', userController.signin);
 fastify.post('/profile', userController.changeProfileInfo);
 
 fastify.post('/askhelp', announcementsController.askHelp);
+
+fastify.post('/announcements/:id', announcementsController.helpToForm);
 
 fastify.setNotFoundHandler((request, reply) => {
   reply.status(404).render('pages/not-found');
