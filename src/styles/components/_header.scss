@@ -139,7 +139,7 @@
 
 @media (min-width: variables.$break-point) {
   .header-wrapper {
-    max-height: 4em;
+    height: fit-content;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
