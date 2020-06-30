@@ -4,7 +4,13 @@ The Need is a website for placement and response to help announcements
 
 ## Launching
 
-Use the pakage manager [yarn](https://classic.yarnpkg.com/en/docs/install/#mac-stable) to run the project. Install the dependencies:
+Clone repository:
+
+```bash
+git clone git@github.com:olga-urentseva/need.git
+```
+
+In this project we use [yarn](https://classic.yarnpkg.com/en/docs/install/#mac-stable) as a package manager. So install the dependencies with it:
 
 ```bash
 yarn
@@ -16,12 +22,12 @@ To work with the database, the application needs the database. If you wanna to d
 docker run -d -p 6432:5432 -e POSTGRES_USER='need' -e POSTGRES_PASSWORD='password'  postgres:12.2-alpine
 ```
 
-Copy the contents from the .env.example to .env file and fill it with contents.
+Copy the contents from the `.env.example` to `.env` file and fill it with contents.
 
-Сreate tables in the database:
+Run migrations. This will prepare dataabase to run project:
 
 ```bash
-knex migrate: latest
+knex migrate:latest
 ```
 
 Finally run the application!
@@ -29,3 +35,23 @@ Finally run the application!
 ```bash
 yarn start:dev
 ```
+
+Now you can open [localhost:3000](http://localhost:3000/) in browser!
+
+## Workflow demonstration
+
+The main idea of this project is the ability to post announcements that you need a little help and respond to such announcements if you want to help someone.
+
+![](docs/screenshots/main.png)
+
+After registering and logging into your account you have the opportunity to make an announcement that you need some help.
+![](docs/screenshots/signup.png)
+![](docs/screenshots/signin.png)
+![](docs/screenshots/askhelp.png)
+
+Or you can help someone right away by selecting the appropriate ad and filling out the form. Information about you will be sent on email to the person who sent the announcement. It is so easy!
+![](docs/screenshots/helpto.png)
+![](docs/screenshots/helptoform.png)
+
+Of course, the functionality of the application is not limited to this. You can see more information on using the application in the video.
+Or launch it yourself.
