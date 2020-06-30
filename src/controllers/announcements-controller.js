@@ -79,11 +79,3 @@ exports.helpToForm = async function (request, reply) {
   reply.render('pages/help-final', { user: request.currentUser });
   return reply;
 };
-
-// exports.showFinal = function (request, reply) {
-//   if (!request.currentUser) {
-//     request.flash('info', `You have to Sign in`);
-//     return reply.redirect('/signin');
-//   }
-//   return reply.render('/pages/help-final', { user: request.currentUser });
-// };

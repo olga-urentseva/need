@@ -117,7 +117,6 @@ exports.showSignup = function (request, reply) {
 };
 
 exports.showProfile = function (request, reply) {
-  request.session.delete();
   if (!request.currentUser) {
     return reply.redirect('/');
   }
