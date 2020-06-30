@@ -6,7 +6,7 @@ block content
     p When you submit the form, person, who made an announcement, will get the email message with your information.
     form.help-to__form.help-to-form(method='post', action='/announcements/' + id)
       lable.input-label(for='input_place_phone') Your phone number
-        input.input-place(type='tel', name='input_place_phone', placeholder='+480000000', pattern='[+]{1}[0-9]{11,14}', required)
+        input.input-place(type='tel', name='input_place_phone', placeholder='+48000000000', pattern='[+]{1}[0-9]{11,14}', required)
       lable.input-label.help-form__message(for='textarea') Message
         textarea.input-place.input-place-message(name='input_place', maxlength='255', required, placeholder='I can help you', id='textarea')
         p.form__character-number(id='character-number') 0 / 255

@@ -81,8 +81,6 @@ fastify.get('/announcements', announcementsController.showAnnouncements);
 
 fastify.get('/announcements/:id', announcementsController.showHelpToForm);
 
-fastify.get('/final', announcementsController.showFinal);
-
 fastify.post('/signup', userController.signup);
 
 fastify.post('/signin', userController.signin);
@@ -102,7 +100,6 @@ fastify.setErrorHandler((error, request, reply) => {
   reply.status(500).render('pages/server-error');
 });
 
-// Run the server!
 const start = async () => {
   try {
     await fastify.listen(3000);
