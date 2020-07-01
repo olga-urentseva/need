@@ -38,6 +38,35 @@ yarn start:dev
 
 Now you can open [localhost:3000](http://localhost:3000/) in browser!
 
+## Technologies that I use in this project:
+
+### For backend:
+
+1. Node.js
+2. Framework Fastify
+3. Plugins fastily-cookie, fustily-flash, fastily-formbody, fastily-secure-session, fastily-static, fastify-point-of-view.
+4. Argon 2 for security of users passwords
+5. SQL query builder Knex
+6. NPM package Mailer for sending emails to users
+7. Docker
+
+### For frontend:
+
+1. Pug
+2. Sass
+3. Javascript
+
+### Used approaches:
+
+1. Mobile first
+2. Responsive design
+3. Inclusiveness
+4. Minimize application weight (for example, I used SVGO for all svg files to make their weight less).
+
+I leverage a MVC pattern to build backend
+
+And some tools for coding like prettier and nodemon.
+
 ## Workflow demonstration
 
 The main idea of this project is the ability to post announcements that you need a little help and respond to such announcements if you want to help someone.
