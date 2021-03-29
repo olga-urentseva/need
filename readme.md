@@ -44,7 +44,7 @@ Now you can open [localhost:3000](http://localhost:3000/) in browser!
 
 1. Node.js
 2. Framework Fastify
-3. Plugins fastily-cookie, fustily-flash, fastily-formbody, fastily-secure-session, fastily-static, fastify-point-of-view.
+3. Plugins fastily-cookie, fastify-flash, fastily-formbody, fastify-secure-session, fastify-static, fastify-point-of-view.
 4. Argon 2 for security of users passwords
 5. SQL query builder Knex
 6. NPM package Mailer for sending emails to users
